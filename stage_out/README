@@ -1,0 +1,2 @@
+bb_so1.sh will run first. 
+checkSO.sh is chained to run after bb_so1.sh completes.
