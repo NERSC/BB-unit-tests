@@ -1,0 +1,9 @@
+The jobs in this directory are chained.
+
+You should only run sbatch ./persistentRequest.sh
+usePers.sh will run after persistentRequest completes.
+deletePersistent.sh will run after usePers completes.
+Each will output its pass/fail conditions in the job script.
+
+NOTE: THERE IS A KNOWN BUG THAT WILL PREVENTS persistentRequest.sh
+FROM COMPLETING. YOU WILL NEED TO MANUALLY RUN usePers.sh.
