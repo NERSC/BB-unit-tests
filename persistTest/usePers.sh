@@ -4,7 +4,7 @@
 #SBATCH -t 00:05:00
 #SBATCH --error=usePers.%J.err
 #SBATCH --output=usePers.%J.out
-#DW persistentdw $DW_PERSISTENT_STRIPED_BBSuiteT1 
+#DW persistentdw name=BBSuiteT1 
 
 echo "BB Test Suite: Persistent Reservation, 1TB, usePers.sh"
 echo "Job script to use the reservation."
@@ -20,6 +20,6 @@ else
 	echo "PASS: Persistent reservation connect and make directory was successful."
 fi
 
-sbatch -d afterok:$SLURM_JOB_ID ./deletePersistent.she
+sbatch -d afterok:$SLURM_JOB_ID ./deletePersistent.sh
 
 wait

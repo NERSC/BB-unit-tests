@@ -7,7 +7,7 @@
 #SBATCH --error tarChk.%j.err
 #DW jobdw type=scratch capacity=400GB access_mode=striped
 
-tar -zcvf stageIn.tar.gz "$SCRATCH/testSuite/stage_in"
+tar czvf stageIn.tar.gz -C /global/cscratch1/sd/melrom/testSuite/stage_in .
 
 cp stageIn.tar.gz $DW_JOB_STRIPED
 

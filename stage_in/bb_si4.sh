@@ -31,30 +31,28 @@ find . -type f -name 100MB -print0 | xargs -0 md5sum >/tmp/STAGED_OUT_DIR_MD5
 find . -type f -name 100GB -print0 | xargs -0 md5sum >/tmp/STAGED_OUT_100GB
 find . -type f -name 2MB -print0 | xargs -0 md5sum >/tmp/STAGED_OUT_2MB
 
-X=diff /tmp/ORIG_DIR_MD5 /tmp/STAGED_OUT_DIR_MD5
-Y=diff /tmp/ORIG_DIR_100GB /tmp/STAGED_OUT_100GB
-Z=diff /tmp/ORIG_DIR_2MB /tmp/STAGED_OUT_2MB
+X=$(diff /tmp/ORIG_DIR_MD5 /tmp/STAGED_OUT_DIR_MD5)
+Y=$(diff /tmp/ORIG_DIR_100GB /tmp/STAGED_OUT_100GB)
+Z=$(diff /tmp/ORIG_DIR_2MB /tmp/STAGED_OUT_2MB)
 FLAG=false
 
-if [ $X -ne 0 ]
-then
+if diff -q "/tmp/ORIG_DIR_MD5" "/tmp/STAGED_OUT_DIR_MD5"; then
 	echo "FAIL: 100MB - BB file does not match PFS file."
 	FLAG=true
 fi
 
-if [ $Y -ne 0 ]
-then
+if diff -q "/tmp/ORIG_DIR_100GB" "/tmp/STAGED_OUT_100GB"; then
 	echo "FAIL: 100GB - BB file does not match PFS file."
 	FLAG=true
 fi
 
-if [ $Z -ne 0 ]
+if diff -q "/tmp/ORIG_DIR_2MB" "/tmp/STAGED_OUT_2MB"; then
 then
 	echo "FAIL: 2MB - BB file does not match PFS file."
 	FLAG=true
 fi
 
-if [ $FLAG -eq "false" ]
+if [ $FLAG -eq false ]
 then
 	echo "PASS: Stage In of 100MB, 100GB, and 2MB Complete."
 fi

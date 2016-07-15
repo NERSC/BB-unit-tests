@@ -15,7 +15,7 @@ fname="$DW_PERSISTENT_STRIPED_BBSuiteT1/testFile"
 
 touch $fname
 
-if [ $? -ne "0" ]
+if [ "$?" -ne "0" ]
 then
 	echo "FAIL: Touch file in persistent res failed. Verify directory: $fname"
 else
